@@ -3,7 +3,12 @@
 from matplotlib import pyplot as plt
 from numpy import log
 from scipy.optimize import brentq as findroot
-import seaborn as sns
+try:
+    import seaborn as sns
+    sns.set_style("white")  # optional seabird settings
+    sns.set_palette('Greys_d')  # optional seabird settings
+except ImportError:
+    pass
 
 
 class SimpleModel:
@@ -127,11 +132,9 @@ for j in range(len(c_list)):
 a.reverse()
 big_A.reverse()
 
-sns.set_style("white")  # optional seabird settings
-sns.set_palette('Greys_d')  # optional seabird settings
 plt.rc('text', usetex=True)
-plt.rc('font', **{'family': 'sans-serif',
-                  'sans-serif': ['Computer Modern Roman']})
+# plt.rc('font', **{'family': 'sans-serif',
+#                  'sans-serif': ['Computer Modern Roman']})
 
 fig, axes = plt.subplots(nrows=2, ncols=2, figsize=(10, 7))
 axes[0, 0].plot(c_list[cap_t-pTminus:cap_t+pTplus], 'k-',
@@ -175,7 +178,7 @@ axes[1, 1].set_xlabel('time')
 
 axes[0, 1].plot([m.u(c, n) - udev for c, n in zip(
                     c_list[cap_t-pTminus:cap_t+pTplus],
-                    n_list[cap_t-pTminus:cap_t+pTplus])])
+                    n_list[cap_t-pTminus:cap_t+pTplus])], 'k-', lw=2)
 axes[0, 1].set_title('(b) Utility relative to deviation utility')
 axes[0, 1].set_xlabel('')
 axes[0, 1].set_xticks([0, 5, 10, 15, 20])
