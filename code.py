@@ -1,3 +1,5 @@
+# Python 3.4 code
+
 from matplotlib import pyplot as plt
 from numpy import log
 from scipy.optimize import brentq as findroot
